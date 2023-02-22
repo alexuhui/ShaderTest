@@ -68,7 +68,7 @@ Shader "TA100/Tess"
 
                 TessVertex tessvert(VertexInput v) { //此处没有进行空间转换，只是把信息传到曲面细分着色器中
                     TessVertex o;
-                    v.vertex.z = saturate(sin( _Time.y + v.vertex.x));
+                    v.vertex.z = sin( _Time.x * 100 + v.vertex.x * 0.1) *0.5 ;
                     o.vertex = v.vertex;
                     o.normal = v.normal;
                     o.tangent = v.tangent;
