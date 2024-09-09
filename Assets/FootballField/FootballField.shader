@@ -61,18 +61,21 @@ Shader "Unlit/FootballField"
                 half innerR = _CircleRadius - _LineWidth;
                 half innerRPow = innerR * innerR;
                 half halfLineW = _LineWidth * 0.5;
+                    
+                    // 大矩形框
                 if((reverseUV.x > _RectHalfSize.z - _LineWidth && reverseUV.x < _RectHalfSize.z && i.uv.y < _RectHalfSize.w + _SideY
                     || i.uv.y < _RectHalfSize.w + _SideY && i.uv.y > _RectHalfSize.w + _SideY - _LineWidth && reverseUV.x < _RectHalfSize.z
-
+                    // 小矩形框
                     || reverseUV.x > _RectHalfSize.x - _LineWidth && reverseUV.x < _RectHalfSize.x && i.uv.y < _RectHalfSize.y + _SideY
                     || i.uv.y < _RectHalfSize.y + _SideY && i.uv.y > _RectHalfSize.y + _SideY - _LineWidth && reverseUV.x < _RectHalfSize.x
-
+                    // 圆
                     || reverseUV.y < halfLineW 
                     || (disPow < rPow && disPow > innerRPow)
-
+                    // 外边框
                     || i.uv.x <  _SideX + _LineWidth
                     || i.uv.y < _SideY + _LineWidth
                     ) 
+                    // 外围限制
                     && i.uv.x > _SideX && i.uv.y > _SideY)
                 {
                     return _LineColor;
